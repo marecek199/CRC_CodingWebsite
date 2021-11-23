@@ -25,6 +25,7 @@ crcData = {
 };
 
 function init() {
+    // initializing the dict
     crcData.word = NaN;
     crcData.code = NaN;
     crcData.sent_message = [NaN];
@@ -38,6 +39,7 @@ function init() {
 }
 
 function init_dec() {
+    // initializing the dict in decoder
     crcData.errors_arr = [];
     crcData.found_error = NaN;
     crcData.rec_mess = NaN;
@@ -51,6 +53,7 @@ function init_dec() {
 }
 
 function polynDiv(words, codes) {
+    // divide 2 polynoms with conclusion and remain as return
     let word, code;
     if (typeof (words) == typeof (1))
         word = genArr(words);
@@ -98,6 +101,7 @@ function polynDiv(words, codes) {
 }
 
 function genArr(code) {
+    // generating array from int number input
     word = [];
     if (typeof (code) === typeof (1)) {
         while (code >= 1) {
@@ -115,7 +119,8 @@ function genArr(code) {
 
 
 function encoder(word, n, k) {
-
+    // encoding function
+    
     // polynom generator 
     polynomGenerator(n, k)
 
@@ -143,14 +148,14 @@ function encoder(word, n, k) {
     }
     else {
         alert('Neexistuje kodovanie v zadanom tvare n,k')
-        // console.log('Neexistuje kodovanie v tvare n,k')
     }
 
 }
 
 function decoder(rec_mess) {
+    // decoding function
+    
     let ans, concl, remain;
-
 
     ans = polynDiv(rec_mess, crcData.code);
     concl = ans[0];
@@ -178,6 +183,8 @@ function decoder(rec_mess) {
 
 
 function remainCare(remain, code) {
+    // increasing possitions to the remain of the polynoms dividing 
+    
     while (remain.length < code.length - 1)
         remain.insert(0, 0)
     return remain
@@ -185,6 +192,7 @@ function remainCare(remain, code) {
 
 
 function generErrors() {
+    // array of all possible errors 
     let mess, ans, concl, remain;
     for (let i = 0; i < crcData.word_long.length; i++) {
         // if (i==6)
@@ -198,9 +206,8 @@ function generErrors() {
     crcData.errors_arr.reverse();
 }
 
-function polynomGenerator(n, k) {
-    // let n = crcData.word.length + crcData.code.length - 1;  //# - 3
-    // let k = crcData.word.length;
+function polynomGenerator(n, k) {          
+    // fiding of generating polynom
 
     let r = n - k + 1;
 
@@ -230,6 +237,7 @@ function polynomGenerator(n, k) {
 }
 
 function generateAllBinaryStrings(n, arr, i) {
+    // recursive generating of all possible disjont combinations
     if (i == n) {
         let newPoly = [];
         newPoly.push(1);
@@ -357,7 +365,7 @@ document.getElementById('decode').addEventListener("click", function () {
 });
 
 function binaryCheck(bin_arr) {
-
+    // checking of binary input
     for (let i = 0; i < bin_arr.length; i++) {
         if (parseInt(bin_arr[i]) == 0 || parseInt(bin_arr[i]) == 1) {
 
@@ -371,7 +379,7 @@ function binaryCheck(bin_arr) {
 
 
 function nkGenCheck(nkCode) {
-    // debugger
+    //checking of right n,k input
 
     if (nkCode.split(',').length != 2) {
         alert("Chyba 'n,k' vstupu");
