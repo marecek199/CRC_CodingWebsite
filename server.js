@@ -4,7 +4,8 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-//const port = process.env.PORT || 3000
+var port = process.env.PORT || 8080;
+
 
 app.use(express.json())
 
@@ -30,11 +31,12 @@ app.get('/', (req, res) => {
 //     res.redirect('./')
 // })
 
+var server=app.listen(port,function() {
+console.log("app running on port 8080"); });
 
-
-app.listen(3000, () => {
-    //console.log(`Listening on http://localhost:${port}`)
-    console.log('Running at 3000')
-})
+// app.listen(3000, () => {
+//     //console.log(`Listening on http://localhost:${port}`)
+//     console.log('Running at 3000')
+// })
 
 
