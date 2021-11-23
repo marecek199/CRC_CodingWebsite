@@ -4,7 +4,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = process.env.PORT || 3000
+//const port = process.env.PORT || 3000
 
 app.use(express.json())
 
@@ -33,7 +33,8 @@ app.get('/', (req, res) => {
 
 
 app.listen(3000, () => {
-    console.log(`Listening on http://localhost:${port}`)
+    //console.log(`Listening on http://localhost:${port}`)
+    console.log('Running at 3000')
 })
 
 
