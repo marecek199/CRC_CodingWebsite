@@ -386,7 +386,10 @@ function nkGenCheck(nkCode) {
         return 1;
     }
     for (let i = 0; i < nkCode.split(',').length; i++) {
-        console.log(parseInt(nkCode.split(',')[i]))
+        if (genArr(parseInt(nkCode.split(',')[i])).length != nkCode.split(',')[i].length) {
+            alert("Chyba 'n,k' vstupu");
+            return 1;
+        }
         if (Number.isInteger(parseInt(nkCode.split(',')[i])) != 1) {
             alert("Chyba 'n,k' vstupu");
             return 1;
